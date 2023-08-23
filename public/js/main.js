@@ -1,50 +1,62 @@
-function onSubmit(e) {
-	e.preventDefault();
+// import axios from "axios";
 
-	document.querySelector('.msg').textContent = '';
-	document.querySelector('#image').src = '';
+const startCreating= document.querySelector('.startCreating');
+const promptDiv= document.querySelector('.promptDiv');
 
-	const prompt = document.querySelector('#promptInput').value;
+startCreating.addEventListener('click', (evt)=>{
+	evt.preventDefault();
+	promptDiv.scrollIntoView({behavior: "smooth"});
+});
 
-	if (prompt === '') {
-		alert('Please add some text');
-		return;
-	}
+const promptForm= document.querySelector('#imagePrompt');
 
-	generateImageRequest(prompt);
-}
-
-async function generateImageRequest(prompt) {
-	try {
+const generateImageRequest= async (prompt) => {
+	try{
 		showSpinner();
-
-		const response = await fetch('/generate', {
+		const res= await axios({
 			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
+			url: '/generate-image',
+			data: {
+				prompt: prompt
 			},
-			body: JSON.stringify({
-				prompt
-			}),
+			withCredentials: true
 		});
 
-		if (!response.ok) {
+		if(res.data.status === "Success"){
+			const imageUrl = res.data.data;
+			document.querySelector('#image').src = imageUrl;
+			removeSpinner();
+			setTimeout(() =>{
+				document.querySelector('#image').scrollIntoView({behavior: "smooth"});
+			},2800);
+			
+		}
+		else{
 			removeSpinner();
 			throw new Error('That image could not be generated');
 		}
-
-		const image = await response.json();
-
-		const imageUrl = image.data;
-
-		document.querySelector('#image').src = imageUrl;
-
-		removeSpinner();
-	} catch (error) {
+	} catch(err){
 		//print error to front end
-		document.querySelector('.msg').textContent = error;
+		document.querySelector('.msg').textContent = err;
 	}
 }
+
+if(promptForm){
+	promptForm.addEventListener('submit', (evt)=>{
+		evt.preventDefault();
+		const prompt = document.querySelector('#promptInput').value;
+
+		if(!prompt){
+			alert('Please add some text');
+			location.reload();
+		}
+		else{
+			generateImageRequest(prompt);
+		}
+	});
+}
+
+
 
 function showSpinner() {
 	document.querySelector('.spinner').classList.add('show');
@@ -53,5 +65,3 @@ function showSpinner() {
 function removeSpinner() {
 	document.querySelector('.spinner').classList.remove('show');
 }
-
-document.querySelector('#imagePrompt').addEventListener('submit', onSubmit);

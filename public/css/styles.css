@@ -1,4 +1,13 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+
+	font-size: 62.5%;
+}
+
 .promptDiv {
+	padding-top: 5rem;
 	text-align: center;
 	font-family: 'Courier New', monospace;
 	color: black;
@@ -6,73 +15,87 @@
 	margin-right: -1rem;
 	margin-left: -1rem;
 	margin-top: -2.3rem;
+
 }
+.cursor-centre{ text-align: center; }
+.writting h1{ font-size: 5rem; }
+.writting p{ font-size: 2.25rem; padding-top: 3rem; }
 
 #ImagineAnImage{
 	padding-top: 3rem;
+	margin-bottom: 2rem;
 	font-size: 2.5rem;
 }
 
-h2 {
-	font-family: 'Courier New', monospace;
-}
-
-body {
-	background-color: #202125;
-}
+h2 { font-family: 'Courier New', monospace; }
+body { background-color: #d8bfd8; }
 
 #promptInput {
 	background: #252527;
 	border-style: solid;
-	font-size: 1.2rem;
-	height: 2.5rem;
-	width: 512px;
+	font-size: 1.5rem;
+	height: 3.5rem;
+	width: 40vw;
 	margin-bottom: 2em;
+	color: #fff;
+	border-radius: 2rem;
+	color: rgb(89, 237, 89);
+}
+#promptInput::placeholder{ font-size:1.5rem; background-color: (62, 238, 62, 0.563); }
+
+.startCreating:link, .startCreating:visited{
+	color: #fff;
+	font-size: 1.5rem;
+	display: inline-block;
+	text-decoration: none;
+	margin-top: 2rem;
+	padding: 2rem 2rem;
+	background-color: rgba(124, 122, 122, 0.533);
+	
+	border-radius: 10rem;
+	font-weight: bold;
+	transition: all 0.4s;
+}
+
+.startCreating:hover, .startCreating:active{
+	background-color: rgba(62, 238, 62, 0.563);
 	color: #fff;
 }
 
+.heroSection{
+	height: 100vh;
+	width: 100vw;
+	background-image: url('../Image/robot-spec-ops-soldier-black-steel-purple-glow-trending.webp');
+	background-size: cover;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	color: #fff;
+
+	text-align: center;
+	font-family: 'Orbitron', sans-serif;
+	letter-spacing: 0.15rem;
+}
+
 .generateButton {
-	background: #303134;
-	color: #E7E9EC;
+	background-color: rgba(124, 122, 122, 0.85);
+	color: #fff;
 	height: 3.5rem;
 	width: 15rem;
 	font-family: 'Courier New', monospace;
 	font-size: 20px;
 	margin-bottom: 2em;
 	border-style: solid;
-	border-radius: .4rem;
+	border-radius: 1rem;
+	transition: all 0.4s;
 }
 
 .generateButton:hover {
-	border-color: #E7E9EC;
-}
-
-/* Navbar */
-.navbar {
-	background: #333;
-	color: #fff;
-	font-family: 'Courier New', monospace;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding-left: 1.8rem;
-	padding-right: 1.4rem;
-	padding-top: .2rem;
-	margin-right: -1rem;
-	margin-left: -1rem;
-	margin-top: -1rem;	
-}
-
-.navbar ul {
-	list-style: none;
-	margin-left: 1rem;
-}
-
-
-.navbar a {
-	color: #fff;
-	text-decoration: none;
-	font-size: 1.2rem;
+	background-color: rgba(57, 247, 57, 0.763);
+	color: #000000;
+	font-weight: bold;
 }
 
 .image-container {
@@ -100,16 +123,11 @@ img {
 	width: 2em;
 	overflow: show;
 	margin: auto;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
+	top: 0; left: 0; bottom: 0; right: 0;
 	display: none;
 }
 
-.show {
-	display: block;
-}
+.show { display: block; }
 
 /* Transparent Overlay */
 .spinner:before {

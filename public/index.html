@@ -4,30 +4,25 @@
 <head>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&family=Open+Sans:wght@400;600&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="js/main.js" defer></script>
-	<title>Leap.ai Image Generator</title>
+	<title>Text To Image Generator</title>
 </head>
 
 <body>
-	<header>
-		<div class="navbar">
-			<div class="logo">
-				<h2>LeapAI Image Generator</h2>
-			</div>
-			<div class="nav-links">
-				<ul>
-					<li>
-						<a href="https://tryleap.ai" target="_blank">Leap AI Docs</a>
-					</li>
-				</ul>
-			</div>
+	<div class="heroSection">
+		<div class="writting">
+			<h1>AI Art Generator</h1>
+			<p >Generate art from text with Artificial Intelligence</p>
+			<a class="startCreating", href="">START CREATING</a>
 		</div>
-	</header>
+	</div>
 
 	<div class="promptDiv">
 		<form id="imagePrompt">
 			<h2 id="ImagineAnImage">Imagine An Image</h2>
-			<input type="text" id="promptInput"><br>
+			<input type="text" id="promptInput" class="cursor-centre" placeholder="Cow on moon" required><br>
 			<button class="generateButton" type="submit" class="btn">Generate</button>
 		</form>
 	</div>

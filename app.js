@@ -1,46 +1,27 @@
-import { Leap } from '@leap-ai/sdk'
-import express from 'express'
-import dotenv from 'dotenv'
-dotenv.config()
 
-const leap = new Leap(process.env.LEAP_API_KEY)
+const express= require('express');
+const dotenv= require('dotenv');
+dotenv.config();
+
 
 const app = express();
 app.use(express.json());
-app.use(express.static("public"));
-const port = 3000;
+const path = require('path');
 
-app.post('/generate', async (req, res) => {
+const PORT = process.env.PORT || 3000;
 
-	const prompt = req.body.prompt;
+app.use(express.static(path.join(__dirname, 'public'))); 
 
-	try {
+app.use(express.json( { limit: '10kb' } )); // required (called middleware). // response data more than 10kb is not allowed
+app.use(express.urlencoded( { extended: true, limit: '10kb'} ));
 
-		//stable diffusion 1.5
-		leap.usePublicModel("sd-1.5");
 
-		//generate the image by passing in the prompt, using leap SDK
-		const response = await leap.generate.generateImage({
-			prompt: prompt,
-		});
-		console.log(response);
-		const imageUrl = response.data.images[0].uri;
+// ROUTES HANDLING
+const webRouter= require('./routes/webRouter');
 
-		//send JSON response to front end, with the data being the image in this case
-		res.status(200).json({
-			success: true,
-			data: imageUrl
-		});
+app.use('/', webRouter); // route mounting
 
-	} catch (error) {
-		console.log(error)
-		//send error to front end, so user can easily see that something went wrong
-		res.status(400).json({
-			success: false,
-			error: 'The image could not be generated'
-		});
-	}
-})
 
-app.listen(port);
-console.log(`Running on localhost:${port}` );
+const server = app.listen(PORT,() => {
+    console.log(`[status] Listening on port ${PORT}`);
+});
