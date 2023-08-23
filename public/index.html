@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<script src="js/main.js" defer></script>
+	<title>Leap.ai Image Generator</title>
+</head>
+
+<body>
+	<header>
+		<div class="navbar">
+			<div class="logo">
+				<h2>LeapAI Image Generator</h2>
+			</div>
+			<div class="nav-links">
+				<ul>
+					<li>
+						<a href="https://tryleap.ai" target="_blank">Leap AI Docs</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</header>
+
+	<div class="promptDiv">
+		<form id="imagePrompt">
+			<h2 id="ImagineAnImage">Imagine An Image</h2>
+			<input type="text" id="promptInput"><br>
+			<button class="generateButton" type="submit" class="btn">Generate</button>
+		</form>
+	</div>
+	<div class="image-container">
+		<h2 class="msg"></h2>
+		<img src="" alt="" id="image" />
+	</div>
+	<div class="spinner"></div>
+
+</body>
+
+</html>
